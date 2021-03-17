@@ -1,0 +1,44 @@
+Si, dije a la 14:49 que pueden hacer todos los ejercicios menos el 5, 9 y el ultimo
+
+===
+
+P: Que onda el grafo completo
+R: Un grafo completo en n vertices es uno con n vertices y todos los lados posibles entre esos verticeso
+
+
+===
+P: profe cuando un subgrafo es apropiado para calcular el numero cromatico?
+R: primero tenes que tener una idea de cual seria el numero cromatico (sigo). Supongamos que mirando el grafo estimas que el coloreo optimo es con r colores, y encontras un coloreo propio con r colores. Si r=2, listo no tenes que hacer nada (siempre que haya al menos un lado). Si r=3 entonces el subgrafo que queres buscar es cualquier ciclo impar.
+Lo mas facil es buscar "triangulos": vertices a,b,c con ab, ac,bc lados, pero no siempre vas a encontrar. Pero si encontras un C5, C7, etc, ya esta
+Si r>3 lamentablemente no hay nada tan facil.
+Lo primero seria buscar un Kr, pero en muchos casos no va a haber un Kr
+
+===
+P : en el pdf se menciona que el orden en que se elijen los vértices para ejecutar greedy, importa. Hay alguna manera de "intuir" en qué orden conviene llamar a los vértices para obtener un resultado próximo al número cromático?
+R: En general no. Pero una buena estrategia es ordenarlos por grado.
+Si se ponen primero los que tienen grado más alto, suele andar bien. Esto es porque si dejas los de grado mas alto para el final, entonces cuando quieras colorearlos vas a tener muchas restricciones. En cambio si para el final quedan los vertices de grado 1, siempre los vas a poder colorear.
+
+===
+P:Hola profe una consulta: Si un grafo G tiene como dos subgrafos A y B, siendo A un Cíclico par y B un cíclico impar. ¿El mínimo numero cromático de G es 2 o 3?
+R: Si un grafo tiene un ciclo impar, independientemente de qué más tenga, su numero cromático es al menos 3.
+por la propiedad que dijimos que si H es subgrafo de G entonces X(H)<=X(G). Basta UN subgrafo con numero cromatico r para que el numero cromatico de G sea tambien >=r.
+
+===
+P: profe, me podría dar una idea de cómo encarar el ejercicio 7? determiné que un cota inferior puede ser 26 (hay 25 primos en [1,100]) y como cota superior, 50 (a todos los números pares los puedo pintar del mismo color). Cómo podría seguir?
+R:Efectivamente, tenes 25 primos mas el 1, son 26 colores distintos como minimo. Antes de seguir, una pregunta: cual es tu intuicion sobre cual seria el numero cromatico? Te parece que con 26 vas a poder o que necesitas mas?
+V: No se me ocurrió la idea de que con 26 sería suficiente. Y ahora que lo pienso, puede ser. Estoy viendo los ejemplos con números más chicos (tomar n = 5, 6 o 7) y la idea de tomar el número cromático como el número de primos en ese intervalo + 1 tiene sentido
+Exacto. Con 26 es suficiente.
+Para colorear a los demas vertices (que son todos los numeros compuestos entre 1 y 100) deberias tratar de colorear a cada numero compuesto con el color de algun primo. Cual primo? Cualquiera? Obvio que no. Pej si coloreasemos a 6 con el color del primo 2 y a 35 tambien con el color del primo 2, tendriamos un coloreo no propio pues 6 y 35 forman lado. Asi que tendra que ser algun primo que tenga algo que ver con la factorizacion.
+BTW, esa idea de resolver un ejemplo con un n grande viendo que pasa con n chicos es algo que muchas veces da buenos resultados.
+V: Mi idea sería colorearlos según la factorización en primos, yendo de "menor a mayor". Por ejemplo, el 12 se factoriza como 2 x 2 x 3, entonces le asigno el mismo color que asigné a 2 (con esto todos los pares me quedan pintados del mismo color). El 15, se factoriza como 3 x 5, por lo que lo pintaría del mismo color que al 3. 35 es 5 x 7, entonces lo pintaría del mismo color que al 5, y así. Creo que esa idea funciona, aunque no estoy seguro de cómo probarlo formalmente que es un coloreo propio
+Si, esa idea funciona. De hecho, podes darle el color de CUALQUIER primo en su factorizacion, no necesariamente el menor. Para probarlo, hacelo por el absurdo.
+Asumi que tenes dos vertices con el mismo color.que formen lado. Ese color no puede ser el color que le diste al 1, porque solo el 1 tiene ese color (todos los demas vertices tienen el color de algun primo). Asi que ese color comun es el color de algun primo....y ahi te dejo que lo penses un poco mas.
+En realidad ni siquiera tiene que ser por el absurdo: lo que queres ver es que dos vertices con el mismo color NO forman lado, es decir, ver que su mcm no es 1.
+
+===
+un ciclo impar necesita si o si >=3 colores
+buscar ciclo impar.
+si no tiene ciclo impar, entonces saben que lo pueden hacer con menos de 3 colores
+
+===
+Si después de un tiempo de mirarlo te convences de que no existe un coloreo con 3 (o con la cantidad que sea) podés intentar hacer una demostración de que no existe.
